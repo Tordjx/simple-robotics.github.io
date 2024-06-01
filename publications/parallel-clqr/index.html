@@ -25,6 +25,9 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="sha384-wcIxkf4k558AjM3Yz3BBFQUbk/zgIYC2R0QpeeYb+TwlBVMrlgLqwRjRtGZiK7ww" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" integrity="sha384-hIoBPJpTUs74ddyc4bFZSM1TVlQDA60VBbJS0oA934VSz82sBx1X7kSx2ATBDIyd" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
 </head>
 <body>
 
@@ -188,28 +191,50 @@
       </div>
     </div>
     <!--/ Abstract. -->
-    <!-- Benchmarks. -->
-    <h2 class="title is-3">Whole-body NMPC on SOLO-12</h2>
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-max-desktop">
+
+    <!-- Results. -->
+    <h2 class="title is-3">Results</h2>
+    <div>
+      <h3 class="title is-4">Whole-body NMPC on SOLO-12</h3>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-max-desktop">
         <div class="columns is-centered">
           <div class="column content">
             <p>Computational timings for P=2 threads</p>
             <image src="./static/images/solo_timings_2cpu.png"
             alt="WBNMPC on SOLO-12, P=2 threads."
-            style="width:90%"></image>
+            style="width:100%"></image>
           </div>
           <div class="column content">
             <p>Computational timings for P=6 threads</p>
             <image src="./static/images/solo_timings_6cpu.png" 
             alt="WBNMPC on SOLO-12, P=6 threads."
-            style="width:90%"></image>
+            style="width:100%"></image>
           </div>
         </div>
       </div>
     </div>
+
+    <div>
+      <h3 class="title is-4">Solving cyclic LQ problems</h3>
+      <p>One of the side-effects of our formulation, is the ability to tackle linear-quadratic problems with cyclical constraints of the form \(G_0x_0 + G_Nx_N + g = 0\).</p>
+      <p>
+        The following is a two-dimensional LQ problem over \(N = 20\) steps with no initial condition but a cyclical condition \(x_0 = x_N\), and some transient costs that steer the generated trajectory close to two points \(\bar{x}_5\) and \(\bar{x}_{15}\).
+      </p>
+      <div class="content has-text-centered">
+        <img src="./static/images/gar-cyclic-lqr-2d.png" alt="2D cyclic LQ problem"
+        style="width: 60%;">
+      </div>
+    </div>
+
+    <h3 class="title is-4">Synthetic benchmark on M1 Mac Studio Ultra</h3>
+    <div class="content has-text-centered">
+      <p>We solve an unconstrained LQ problem with the same dimensions as the SOLO-12 NMPC experiment.</p>
+      <img src="./static/images/mac-gar-bench-timings.png" alt="" style="width: 50%;">
+    </div>
+  </div>
               
-   <!--/ Benchmarks. -->
+   <!--/ Results. -->
   </div>
 </section>
 
