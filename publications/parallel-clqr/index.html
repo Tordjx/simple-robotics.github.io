@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Parallelized proximal constrained LQR">
+  <meta name="keywords" content="Numerical optimization, Numerical optimal control, LQR, Riccati">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>aligator</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://simple-robotics.github.io">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://ieeexplore.ieee.org/document/9981586">
+            Constrained DDP: a primal-dual augmented Lagrangian approach
+          </a>
+          <a class="navbar-item" href="https://ieeexplore.ieee.org/document/9811647">
+            Implicit differential dynamic programming
+          </a>
+          <a class="navbar-item" href="https://ieeexplore.ieee.org/document/10521997/">
+            Condensed Semi-Implicit Dynamics for Trajectory Optimization in Soft Robotics
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Parallel and Proximal Constrained Linear-Quadratic Methods for Real-Time Nonlinear MPC</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://manifoldfr.github.io">Wilson Jallet</a><sup>*</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://github.com/etiennear">Etienne Arlaud</a><sup>*</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://github.com/edantec">Ewen Dantec</a><sup>*</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://gepettoweb.laas.fr/index.php/Members/NicolasMansard">Nicolas Mansard</a><sup>*</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://jcarpent.github.io">Justin Carpentier</a><sup>*</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Wilson Jallet, Etienne Arlaud, Ewen Dantec and Justin Carpentier are with INRIA Willow.<br>
+              Wilson Jallet and Nicolas Mansard are with LAAS-CNRS' Gepetto team.</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="./static/paper/rssparallelclqr2024.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://inria.hal.science/hal-04575334"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-globe-europe"></i>
+                  </span>
+                  <span>HAL</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2405.09197"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- 
+              <span class="link-block">
+                <a href="https://youtu.be/i_qg9cTx0NY?si=NGtx1tiYrIGtHXSK"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/Simple-Robotics/aligator"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Repository for aligator</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Paper video. -->
+    <!--
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/i_qg9cTx0NY"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    -->
+    <!--/ Paper video. -->
+
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Recent strides in nonlinear model predictive control (NMPC) underscore a dependence on numerical advancements to efficiently and accurately solve large-scale problems. Given the substantial number of variables characterizing typical whole-body optimal control (OC) problems —often numbering in the thousands— exploiting the sparse structure of the numerical problem becomes crucial to meet computational demands, typically in the range of a few milliseconds.
+          </p>
+          <p>
+            Addressing the linear-quadratic regulator (LQR) problem is a fundamental building block for computing Newton or Sequential Quadratic Programming (SQP) steps in direct optimal control methods. This paper concentrates on equality-constrained problems featuring implicit system dynamics and dual regularization, a characteristic of advanced interior-point or augmented Lagrangian solvers. Here, we introduce a parallel algorithm for solving an LQR problem with dual regularization. Leveraging a rewriting of the LQR recursion through block elimination, we first enhanced the efficiency of the serial algorithm and then subsequently generalized it to handle parametric problems. This extension enables us to split decision variables and solve multiple subproblems concurrently.
+          </p>
+          <p>
+            Our algorithm is implemented in our nonlinear numerical optimal control library <a href="https://github.com/Simple-Robotics/aligator">aligator</a>. It showcases improved performance over previous serial formulations and we validate its efficacy by deploying it in the model predictive control of a real quadruped robot.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Concurrent Work. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Related Links</h2>
+
+        <div class="content has-text-justified">
+          This work heavily relies on the
+          <a href="https://github.com/Simple-Robotics/aligator">aligator</a>
+          and
+          <a href="https://github.com/stack-of-tasks/pinocchio">Pinocchio</a>
+          libraries.
+        </div>
+      </div>
+    </div>
+    <!--/ Concurrent Work. -->
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{jalletParallelProximalLinearQuadratic2024,
+  author    = {Jallet, Wilson and Dantec, Ewen and Arlaud, Etienne and Mansard, Nicolas, and Carpentier, Justin},
+  title     = {Parallel and Proximal Constrained Linear-Quadratic Methods for Real-Time Nonlinear MPC},
+  journal   = {Robotics: Science and Systems XX},
+  year      = {2024},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/paper/simplecontacts2024.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/Simple-Robotics" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            We thank <a
+            href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> for creating the template of this webpage.
+            You are free to borrow the <a
+              href="https://github.com/simple-robotics.github.io/publications/simple-contact-solver">source code</a>,
+            we just ask that you link back to the <a
+            href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> page in the footer.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
