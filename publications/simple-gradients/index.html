@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Contact solver of Simple simulator">
+  <meta name="keywords" content="Simple, Contact, Contact Solver, Physics Simulation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simple Gradients</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://simple-robotics.github.io">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://arxiv.org/abs/2304.06372">
+            Contact Models
+          </a>
+          <a class="navbar-item" href="https://arxiv.org/abs/2405.17020">
+            Contact Simulation
+          </a>
+          <a class="navbar-item" href="https://quentinll.github.io/projects/diffsim/">
+            Differentiable Simulation
+          </a>
+          <a class="navbar-item" href="https://ieeexplore.ieee.org/document/10494919">
+            GJK++: accelerated collision detection
+          </a>
+          <a class="navbar-item" href="https://lmontaut.github.io/diffcol_rs.github.io/">
+            Differentiable Collisions Detection
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">End-to-End and Highly-Efficient Differentiable Simulation for Robotics</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://quentinll.github.io">Quentin Le Lidec</a><sup>*</sup>,</span>
+            <span class="author-block">
+              <a href="https://lmontaut.github.io">Louis Montaut</a><sup>*</sup>,</span>
+            <span class="author-block">
+              <a href="https://ymontmarin.github.io/">Yann de Mont-Marin</a><sup>*</sup>,</span>
+            <span class="author-block">
+              <a href="https://jcarpent.github.io">Justin Carpentier</a></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>*</sup>Equal contribution.</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">All authors are with INRIA Willow.</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="./static/paper/simple2024gradients.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-globe-europe"></i>
+                  </span>
+                  <span>HAL</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/Simple-Robotics/Simple"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/i_qg9cTx0NY"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          Over the past few years, robotics simulators have largely improved in
+          efficiency and scalability, enabling them to generate years of simulated data in a
+          few hours. Yet, efficiently and accurately computing the simulation derivatives
+          remains an open challenge, with potentially high gains on the convergence speed
+          of reinforcement learning and trajectory optimization algorithms, especially for
+          problems involving physical contact interactions. This paper contributes to this
+          objective by introducing a unified and efficient algorithmic solution for computing
+          the analytical derivatives of robotic simulators. The approach considers both the
+          collision and frictional stages, accounting for their intrinsic nonsmoothness and  also exploiting the sparsity induced by the underlying multibody systems. These derivatives have been implemented in C++, and the code will be open-sourced in the <a href="https://github.com/Simple-Robotics/Simple">Simple</a> simulator. They depict state-of-the-art timings ranging from 5 microseconds for
+          a 7-dof manipulator up to 95 microseconds for 36-dof humanoid, outperforming alternative
+          solutions by a factor of at least 100.
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+     <!-- Benchmarks. -->
+     <div class="columns is-centered has-text-centered">
+      <div class="column is-max-desktop">
+        <h2 class="title is-3">Benchmarks</h2>
+        <div class="container is-max-desktop">
+          <div class="content has-text-left">
+            We compared our approach to MuJoCo, and MJX frameworks. Timing statistics
+            (mean and standard deviation in microseconds) for simulation, gradient, and finite-differences com-
+            putation are measured for one simulation step. For MJX, N/A denotes scenarios where geometries were not sup-
+            ported.
+          </div>
+          <div class="columns is-centered">
+            <div class="column">
+              <div class="content">
+                <image src="./static/images/timings_grad.png" alt="" style="width:100%"></image>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="columns is-centered">
+    
+            <div class="column">
+              <div class="content">
+                <image src="./static/images/go_cube.png" alt="" style="width:100%"></image>
+              </div>
+            </div>
+
+            <div class="column">
+              <div class="content">
+                <image src="./static/images/go_handstand.png" alt="" style="width:100%">
+              </div>
+            </div>
+
+            <div class="column">
+              <div class="content">
+                <image src="./static/images/h1_pushups.png" alt="" style="width:100%">
+              </div>
+            </div>
+
+            <div class="column">
+              <div class="content">
+                <image src="./static/images/half_cheetah_simple.png" alt="" style="width:100%">
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <!--/ Benchmarks. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Concurrent Work. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Related Links</h2>
+
+        <div class="content has-text-justified">
+          This work heavily relies on the <a
+          href="https://github.com/stack-of-tasks/pinocchio">Pinocchio</a> and <a
+          href="https://github.com/humanoid-path-planner/hpp-fcl">HPP-FCL</a>  libraries.
+        </div>
+      </div>
+    </div>
+    <!--/ Concurrent Work. -->
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{simple2024gradients,
+  author    = {Le Lidec, Quentin and Montaut, Louis and De Mont-Marin, Yann and Carpentier, Justin},
+  title     = {End-to-End and Highly-Efficient Differentiable Simulation for Robotics},
+  journal   = {preprint},
+  year      = {2024},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/paper/simple2024gradients.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/Simple-Robotics" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            We thank <a
+            href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> for creating the template of this webpage.
+            You are free to borrow the <a
+              href="https://github.com/simple-robotics.github.io/publications/simple-gradients">source code</a>,
+            we just ask that you link back to the <a
+            href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> page in the footer.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
