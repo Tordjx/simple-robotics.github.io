@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Constrained Articulated Body Algorithms">
+  <meta name="keywords" content="Constrained Dynamics, Rigid Body Dynamics Algorithms, Physics Simulation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Constrained Articulated Body Algorithms</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://simple-robotics.github.io">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <!-- <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://arxiv.org/abs/2304.06372">
+            Constrained Dynamics
+          </a>
+          <a class="navbar-item" href="https://quentinll.github.io/projects/diffsim/">
+            Differentiable Simulation
+          </a>
+          <a class="navbar-item" href="https://ieeexplore.ieee.org/document/10494919">
+            GJK++: accelerated collision detection
+          </a>
+          <a class="navbar-item" href="https://lmontaut.github.io/diffcol_rs.github.io/">
+            Differentiable Collisions Detection
+          </a>
+        </div>
+      </div>
+    </div> -->
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Constrained Articulated Body Dynamics Algorithms</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://www.ajaysathya.com">Ajay Suresha Sathya</a><sup></sup>,</span>
+            <span class="author-block">
+              <a href="https://jcarpent.github.io">Justin Carpentier</a><sup></sup>,</span>
+          </div>
+
+          <!-- <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>*</sup>Equal contribution. Authors are listed in alphabetical order.</span>
+          </div> -->
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">All authors are with INRIA Willow.</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="./static/paper/main.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://hal.science/hal-04443056"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-globe-europe"></i>
+                  </span>
+                  <span>HAL</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://ieeexplore.ieee.org/document/10758251/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-globe-europe"></i>
+                  </span>
+                  <span>IEEE T-RO</span>
+                </a>
+              </span>
+              <!-- <span class="link-block">
+                <a href="https://arxiv.org/abs/2405.17020"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span> -->
+              <!-- Video Link.
+              <span class="link-block">
+                <a href="https://youtu.be/i_qg9cTx0NY?si=NGtx1tiYrIGtHXSK"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/stack-of-tasks/pinocchio/blob/d091266a94b5e2357862548ecfe0836e230a2c75/include/pinocchio/algorithm/pv.hxx"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <!-- <div class="container is-max-desktop">
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/i_qg9cTx0NY"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Rigid-body dynamics algorithms have played an essential role in robotics development. By finely exploiting the underlying robot structure, they allow the computation of the robot kinematics, dynamics, and related physical quantities with low complexity, enabling their integration into chipsets with limited resources or their evaluation at very high frequency for demanding applications (e.g., model predictive control, large-scale simulation, reinforcement learning, etc.). While most of these algorithms operate on constraint-free settings, only a few have been proposed so far to adequately account for constrained dynamical systems while depicting low algorithmic complexity. In this article, we introduce a series of new algorithms with reduced (and lowest) complexity for the forward simulation of constrained dynamical systems. Notably, we revisit the so-called articulated body algorithm (ABA) and the Popov–Vereshchagin algorithm (PV) in the light of proximal-point optimization and introduce two new algorithms, called constrained ABA and proxPV. These two new algorithms depict linear complexities while being robust to singular cases (e.g., redundant constraints, singular constraints, etc.). We establish the connection with existing literature formulations, especially the relaxed formulation at the heart of the MuJoCo and Drake simulators. We also propose an efficient and new algorithm to compute the damped Delassus inverse matrix with the lowest known computational complexity. All these algorithms have been implemented inside the open-source framework Pinocchio and depict, on a wide range of robotic systems ranging from robot manipulators to complex humanoid robots, state-of-the-art performances compared to alternative solutions of the literature.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-max-desktop">
+        <h2 class="title is-3">Overview</h2>
+        <div class="container is-max-desktop">
+
+          <div class="columns is-centered">
+    
+            <div class="column">
+              <div class="content">
+                <image src="./static/images/overview_caba.png" alt="Computational time for UR5 robot." style="width:100%"></image>
+              </div>
+              The proximal formulation of the equality-constrained dynamics problem results in four different algorithms, namely proxLTL, proxLTLs, proxPV, and constrainedABA depending on the usage of maximal or minimal coordinates during derivation and the order of elimination of the primal and dual variables, as shown in the overview figure above.
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Benchmarks. -->
+  </div>
+</section>
+     <!-- Benchmarks. -->
+     <div class="columns is-centered has-text-centered">
+      <div class="column is-max-desktop">
+        <h2 class="title is-3">Selected Benchmarks</h2>
+        <div class="container is-max-desktop">
+
+          <div class="columns is-centered">
+    
+            <div class="column">
+              <div class="content">
+                <image src="./static/images/tab_timings.png" alt="Computational timings of different algorithms." style="width:100%"></image>
+              </div>
+            </div>
+
+              <!-- <div class="column">
+                <div class="content">
+                  <image src="./static/images/humanoid.png" alt="Computational time for MuJoCo humanoid." style="width:100%">
+                </div>
+              </div> -->
+
+            <div class="column">
+              <div class="content">
+                <image src="./static/images/operation_count_talos.png" alt="Operation count Talos." style="width:100%">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Benchmarks. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Concurrent Work. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Related Links</h2>
+
+        <div class="content has-text-justified">
+          This work heavily relies on the <a
+          href="https://github.com/stack-of-tasks/pinocchio">Pinocchio</a>  library.
+        </div>
+      </div>
+    </div>
+    <!--/ Concurrent Work. -->
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@ARTICLE{sathya_constrainedABA_2024,
+      author={Sathya, Ajay Suresha and Carpentier, Justin},
+      journal={IEEE Transactions on Robotics}, 
+      title={Constrained Articulated Body Dynamics Algorithms}, 
+      year={2025},    
+      volume={41},
+      number={},
+      pages={430-449},
+      keywords={Heuristic algorithms;Robots;Robot kinematics;Symmetric matrices;Vectors;Prediction algorithms;Kinematics;Computational efficiency;Computational complexity;Symbols;Direct/inverse dynamics formulation;dynamics;humanoid robots;optimization and optimal control},
+      doi={10.1109/TRO.2024.3502515}}
+    </code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/paper/main.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/Simple-Robotics" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            We thank <a
+            href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> for creating the template of this webpage.
+            You are free to borrow the <a
+              href="https://github.com/simple-robotics.github.io/publications/simple-contact-solver">source code</a>,
+            we just ask that you link back to the <a
+            href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> page in the footer.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
