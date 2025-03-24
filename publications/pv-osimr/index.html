@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="PV-OSIMr: A Lowest Order Complexity Algorithm for Computing the Delassus Matrix">
+  <meta name="keywords" content="Constrained Dynamics, Rigid Body Dynamics Algorithms, Physics Simulation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PV-OSIMr: A Lowest Order Complexity Algorithm for Computing the Delassus Matrix</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script type="text/javascript"
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://simple-robotics.github.io">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <!-- <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://arxiv.org/abs/2304.06372">
+            Constrained Dynamics
+          </a>
+          <a class="navbar-item" href="https://quentinll.github.io/projects/diffsim/">
+            Differentiable Simulation
+          </a>
+          <a class="navbar-item" href="https://ieeexplore.ieee.org/document/10494919">
+            GJK++: accelerated collision detection
+          </a>
+          <a class="navbar-item" href="https://lmontaut.github.io/diffcol_rs.github.io/">
+            Differentiable Collisions Detection
+          </a>
+        </div>
+      </div>
+    </div> -->
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">PV-OSIMr: A Lowest Order Complexity Algorithm for Computing the Delassus Matrix</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://www.ajaysathya.com">Ajay Suresha Sathya</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=ZgAnArUAAAAJ&hl">Wilm Decré</a><sup>2</sup>,</span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=X_fnO1YAAAAJ&hl">Jan Swevers</a><sup>2</sup>,</span>
+          </div>
+
+          <!-- <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>*</sup>Equal contribution. Authors are listed in alphabetical order.</span>
+          </div> -->
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup> Willow, Inria, DI-ENS Paris, PSL University, 75006 Paris, France.  </span>
+          </div>
+         
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"> <sup>2</sup> Division of Robotics, Automation and Mechatronics, Department of Mechanical Engineering, KU
+              Leuven, and FlandersMake@KULeuven, 3000 Leuven, Belgium. </span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="./static/paper/PV_OSIMr_RAL_24.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- <span class="link-block">
+                <a href="https://hal.science/hal-04443056"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-globe-europe"></i>
+                  </span>
+                  <span>HAL</span>
+                </a>
+              </span> -->
+              <span class="link-block">
+                <a href="https://ieeexplore.ieee.org/abstract/document/10697298"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-globe-europe"></i>
+                  </span>
+                  <span>IEEE RA-L</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://doi.org/10.48550/arXiv.2310.03676"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link.
+              <span class="link-block">
+                <a href="https://youtu.be/i_qg9cTx0NY?si=NGtx1tiYrIGtHXSK"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/stack-of-tasks/pinocchio/blob/4a769cbec934fe847d84722e133b821f5501d4d5/include/pinocchio/algorithm/delassus.hxx#L435"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <!-- <div class="container is-max-desktop">
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/i_qg9cTx0NY"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            We present PV-OSIMr, an efficient algorithm for computing the Delassus matrix (also known as the inverse operational space inertia matrix) for a kinematic tree, with the lowest order computational complexity known in literature. PV-OSIMr is derived by optimizing the recently proposed PV-OSIM algorithm using the compositionality of the force and motion propagators. It has a computational complexity of $O(n+m^2)$ compared to $O(n+m^2d)$ of the PV-OSIM algorithm and $O(n+md+m^2)$ of the extended force propagator algorithm (EFPA), where $n$ is the number of joints, $m$ is the number of constraints and $d$ is the depth of the kinematic tree. Since the Delassus matrix is an $m×m$ sized matrix and its computation must consider all the n joints, PV-OSIMr's asymptotic computational complexity is optimal. We further benchmark our algorithm and find it to be often more efficient than the PV-OSIM and EFPA in practice.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-max-desktop">
+        <h2 class="title is-3">Overview</h2>
+        <div class="container is-max-desktop">
+
+          <div class="columns is-centered">
+    
+            <div class="column">
+              <div class="content">
+                <image src="./static/images/tab_overview.png" alt="Overview computational complexity of algorithms." style="width:60%"></image>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Benchmarks. -->
+  </div>
+</section>
+     <!-- Benchmarks. -->
+     <div class="columns is-centered has-text-centered">
+      <div class="column is-max-desktop">
+        <h2 class="title is-3">Selected Benchmarks</h2>
+        <div class="container is-max-desktop">
+
+          <div class="columns is-centered">
+    
+            <div class="column">
+              <div class="content">
+                <image src="./static/images/opcount_a.png" alt="Operation count for shadow hand." style="width:100%"></image>
+              </div>
+            </div>
+
+              <!-- <div class="column">
+                <div class="content">
+                  <image src="./static/images/humanoid.png" alt="Computational time for MuJoCo humanoid." style="width:100%">
+                </div>
+              </div> -->
+
+            <div class="column">
+              <div class="content">
+                <image src="./static/images/opcount_b.png" alt="Operation count for shadow hand attached to Atlas." style="width:100%">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Benchmarks. -->
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@ARTICLE{sathya_pvosimr_2024,
+      author={Sathya, Ajay Suresha and Decré, Wilm and Swevers, Jan},
+      journal={IEEE Robotics and Automation Letters}, 
+      title={PV-OSIMr: A Lowest Order Complexity Algorithm for Computing the Delassus Matrix}, 
+      year={2024},
+      volume={9},
+      number={11},
+      pages={10224-10231},
+      keywords={Heuristic algorithms;Force;Kinematics;Aerospace electronics;Robot kinematics;End effectors;Computational complexity;Computational efficiency;Dynamics;multi-contact whole-body motion planning and control;whole-body motion planning and control},
+      doi={10.1109/LRA.2024.3469829}}    
+    </code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/paper/main.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/Simple-Robotics" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            We thank <a
+            href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> for creating the template of this webpage.
+            You are free to borrow the <a
+              href="https://github.com/simple-robotics.github.io/publications/simple-contact-solver">source code</a>,
+            we just ask that you link back to the <a
+            href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> page in the footer.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
