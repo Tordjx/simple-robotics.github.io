@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Analysis of contact models in robotics">
+  <meta name="keywords" content="Contact Models, Robotics, Physics Simulation, Contact Mechanics">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Analysis of Contact Models in Robotics</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://simple-robotics.github.io">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://simple-robotics.github.io/publications/simple-gradients/">
+            Simple Gradients
+          </a>
+          <a class="navbar-item" href="https://simple-robotics.github.io/publications/simple-contact-solver/">
+            Contact Simulation
+          </a>
+          <a class="navbar-item" href="https://quentinll.github.io/projects/diffsim/">
+            Differentiable System Identification
+          </a>
+          <a class="navbar-item" href="https://ieeexplore.ieee.org/document/10494919">
+            GJK++: accelerated collision detection
+          </a>
+          <a class="navbar-item" href="https://lmontaut.github.io/diffcol_rs.github.io/">
+            Differentiable Collisions Detection
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Contact Models in Robotics: a Comparative Analysis</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://quentinll.github.io">Quentin Le Lidec</a>,</span>
+            <span class="author-block">
+              <a href="https://manifoldfr.github.io/">Wilson Jallet</a>,</span>
+            <span class="author-block">
+              <a href="https://lmontaut.github.io">Louis Montaut</a>,</span>
+            <span class="author-block">
+              <a href="https://www.di.ens.fr/~laptev/">Ivan Laptev</a>,</span>
+            <span class="author-block">
+              <a href="https://cordeliaschmid.github.io/">Cordelia Schmid</a>,</span>
+            <span class="author-block">
+              <a href="https://jcarpent.github.io">Justin Carpentier</a></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">All authors are with INRIA Willow.</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="./static/paper/lelidec2024contacts.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2304.06372"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/Simple-Robotics/ContactBench"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Paper image. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="publication-image">
+          <img src="./static/images/solo_final_figure.png" alt="Contact Models Analysis" style="width:100%">
+        </div>
+      </div>
+    </div>
+    <!--/ Paper image. -->
+
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          Physics simulation is ubiquitous in robotics. Whether in model-based approaches (e.g., trajectory optimization), or model-free algorithms (e.g., reinforcement learning), physics simulators are a central component of modern control pipelines in robotics. Over the past decades, several robotic simulators have been developed, each with dedicated contact modeling assumptions and algorithmic solutions. In this article, we survey the main contact models and the associated numerical methods commonly used in robotics for simulating advanced robot motions involving contact interactions. In particular, we recall the physical laws underlying contacts and friction (i.e., Signorini condition, Coulomb's law, and the maximum dissipation principle), and how they are transcribed in current simulators. For each physics engine, we expose their inherent physical relaxations along with their limitations due to the numerical techniques employed. Based on our study, we propose theoretically grounded quantitative criteria on which we build benchmarks assessing both the physical and computational aspects of simulation. We support our work with an open-source and efficient C++ implementation of the existing algorithmic variations. Our results demonstrate that some approximations or algorithms commonly used in robotics can severely widen the reality gap and impact target applications. We hope this work will help motivate the development of new contact models, contact solvers, and robotic simulators in general, at the root of recent progress in motion generation in robotics. 
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Benchmarks. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-max-desktop">
+        <h2 class="title is-3">Benchmarks</h2>
+        <div class="container is-max-desktop">
+          <div class="content has-text-left">
+            We compared various contact models and solvers. Timing statistics
+            (mean and standard deviation in microseconds) for solving contact forces with warm-start (Left) and without warm-start (Right) are averaged over a full trajectory.
+          </div>
+          <div class="columns is-centered">
+            <div class="column">
+              <div class="content">
+                <image src="./static/images/timings_ws.png" alt="Computational time with warm-start." style="width:100%"></image>
+              </div>
+            </div>
+
+            <div class="column">
+              <div class="content">
+                <image src="./static/images/timings_cs.png" alt="Computational time without warm-start." style="width:100%">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Benchmarks. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Related Links. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Related Links</h2>
+
+        <div class="content has-text-justified">
+          This work heavily relies on the <a href="https://github.com/stack-of-tasks/pinocchio">Pinocchio</a> and <a href="https://github.com/coal-library/coal">Coal</a> libraries.
+        </div>
+      </div>
+    </div>
+    <!--/ Related Links. -->
+
+    <!-- BibTeX. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">BibTeX</h2>
+        <div class="content has-text-left">
+          <pre><code>@article{lelidec2024contacts,
+  title={Contact Models in Robotics: a Comparative Analysis},
+  author={Le Lidec, Quentin and Jallet, Wilson and Montaut, Louis and Laptev, Ivan and Schmid, Cordelia and Carpentier, Justin},
+  journal={arXiv preprint arXiv:2304.06372},
+  year={2024}
+}</code></pre>
+        </div>
+      </div>
+    </div>
+    <!--/ BibTeX. -->
+  </div>
+</section>
+
+</body>
+</html> 
