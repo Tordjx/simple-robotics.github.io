@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Accelerated collision detection and distance computation between convex geometries">
+  <meta name="keywords" content="Collision Detection, GJK Algorithm, Convex Optimization, Robotics, Computer Graphics">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Accelerated GJK Algorithm for Collision Detection</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://simple-robotics.github.io">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://simple-robotics.github.io/publications/simple-gradients/">
+            Simple Gradients
+          </a>
+          <a class="navbar-item" href="https://simple-robotics.github.io/publications/simple-contact-solver/">
+            Contact Simulation
+          </a>
+          <a class="navbar-item" href="https://quentinll.github.io/projects/diffsim/">
+            Differentiable System Identification
+          </a>
+          <a class="navbar-item" href="https://ieeexplore.ieee.org/document/10494919">
+            GJK++: accelerated collision detection
+          </a>
+          <a class="navbar-item" href="https://lmontaut.github.io/diffcol_rs.github.io/">
+            Differentiable Collisions Detection
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">GJK++: Leveraging Acceleration Methods for Faster Collision Detection</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://lmontaut.github.io">Louis Montaut</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://quentinll.github.io">Quentin Le Lidec</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.di.ens.fr/~petrik/">Vladimir Petrik</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.di.ens.fr/~sivic/">Josef Sivic</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://jcarpent.github.io">Justin Carpentier</a><sup>1</sup></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup> INRIA Willow, <sup>2</sup> Czech Technical University in Prague</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="./static/paper/montaut2024gjk.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://ieeexplore.ieee.org/document/10494919"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-ieee"></i>
+                  </span>
+                  <span>IEEE</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/coal-library/coal"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          Collision detection is a fundamental problem in various domains, such as robotics, computational physics, and computer graphics. In general, collision detection is tackled as a computational geometry problem, with the so-called Gilbert, Johnson, and Keerthi (GJK) algorithm being the most adopted solution nowadays. While introduced in 1988, GJK remains the most effective solution to compute the distance or the collision between two 3-D convex geometries. Over the years, it was shown to be efficient, scalable, and generic, operating on a broad class of convex shapes, ranging from simple primitives (sphere, ellipsoid, box, cone, capsule, etc.) to complex meshes involving thousands of vertices. In this article, we introduce several contributions to accelerate collision detection and distance computation between convex geometries by leveraging the fact that these two problems are fundamentally optimization problems. Notably, we establish that the GJK algorithm is a specific subcase of the well-established Frank–Wolfe (FW) algorithm in convex optimization. By adapting recent works linking Polyak and Nesterov accelerations to FW methods, we also propose two accelerated extensions of the classic GJK algorithm. Through an extensive benchmark over millions of collision pairs involving objects of daily life, we show that these two accelerated GJK extensions significantly reduce the overall computational burden of collision detection, leading to computation times that are up to two times faster. Finally, we hope this work will significantly reduce the computational cost of modern robotic simulators, allowing the speedup of modern robotic applications that heavily rely on simulation, such as reinforcement learning or trajectory optimization.
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Results. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-max-desktop">
+        <h2 class="title is-3">Results</h2>
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column is-four-fifths">
+              <div class="publication-image">
+                <img src="./static/images/header_gjk.png" alt="GJK++ Results" style="width:100%">
+              </div>
+              <div class="content has-text-justified">
+                Two distinct collision problems using shapes from the YCB dataset: in (a) the shapes A1 (in green) and A2 (in red) are not in collision [dist(A1, A2) > 0] whereas in (b) the shapes are in collision [dist(A1, A2) = 0]. In the left column, the OBB of the objects are represented in light colors. In the right column, the light colors represent the convex hull of each object. In both collision problems, (a) and (b), the broad phase finds a collision between the object's OBBs; the narrow phase must thus be called to confirm or infirm the collision. The right column corresponds to the narrow phase in which the GJK algorithm is called on the objects' convex hulls. In this article, we propose the Polyak-accelerated GJK and Nesterov-accelerated GJK algorithms in order to accelerate collision detection.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Results. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Related Links. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Related Links</h2>
+
+        <div class="content has-text-justified">
+          This work is implemented in the <a href="https://github.com/coal-library/coal">Coal</a> library and is used in <a href="https://github.com/stack-of-tasks/pinocchio">Pinocchio</a> for collision detection.
+        </div>
+      </div>
+    </div>
+    <!--/ Related Links. -->
+
+    <!-- BibTeX. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">BibTeX</h2>
+        <div class="content has-text-left">
+          <pre><code>@article{lelidec2024gjk,
+  title={GJK++: Leveraging Acceleration Methods for Faster Collision Detection},
+  author={Montaut, Louis and Le Lidec, Quentin and Petrik, Vladimir and Sivic, Josef and Carpentier, Justin},
+  journal={IEEE Transactions on Robotics},
+  year={2024},
+  publisher={IEEE},
+  doi={10.1109/TRO.2024.3354819}
+}</code></pre>
+        </div>
+      </div>
+    </div>
+    <!--/ BibTeX. -->
+  </div>
+</section>
+
+</body>
+</html> 
