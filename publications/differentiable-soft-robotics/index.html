@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Differentiable simulation for soft robotics with frictional contacts">
+  <meta name="keywords" content="Soft-robotic, Simulation, Differentiable physics, Differentiable optimization, Nonsmooth dynamics.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Differentiable Simulation of Soft Robots with Frictional Contacts</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://simple-robotics.github.io">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://simple-robotics.github.io/publications/simple-gradients/">
+            Simple Gradients
+          </a>
+          <a class="navbar-item" href="https://simple-robotics.github.io/publications/simple-contact-solver/">
+            Contact Simulation
+          </a>
+          <a class="navbar-item" href="https://quentinll.github.io/projects/diffsim/">
+            Differentiable System Identification
+          </a>
+          <a class="navbar-item" href="https://ieeexplore.ieee.org/document/10494919">
+            GJK++: accelerated collision detection
+          </a>
+          <a class="navbar-item" href="https://lmontaut.github.io/diffcol_rs.github.io/">
+            Differentiable Collisions Detection
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Differentiable Simulation of Soft Robots with Frictional Contacts</h1>
+          <div class="is-size-5 publication-authors">
+           <span class="author-block">
+              <a href="https://www.linkedin.com/in/etienne-ménager-6679b7127/?originalSubdomain=fr">Etienne Ménager</a>,</span>
+            <span class="author-block">
+              <a href="https://lmontaut.github.io">Louis Montaut</a>,</span>
+            <span class="author-block">
+              <a href="https://quentinll.github.io">Quentin Le Lidec</a>,</span>
+            <span class="author-block">
+              <a href="https://jcarpent.github.io">Justin Carpentier</a></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">All authors are with INRIA Willow.</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="./static/paperRobotSoft_25_menager.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://hal.science/hal-04916093/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-globe-europe"></i>
+                  </span>
+                  <span>HAL</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2501.18956"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+      
+          In recent years, soft robotics simulators have
+evolved to offer various functionalities, including the simu-
+lation of different material types (e.g., elastic, hyper-elastic)
+and actuation methods (e.g., pneumatic, cable-driven, servo-
+motor). These simulators also provide tools for various tasks,
+such as calibration, design, and control. However, efficiently
+and accurately computing derivatives within these simulators
+remains a challenge, particularly in the presence of physical
+contact interactions. Incorporating these derivatives can, for
+instance, significantly improve the convergence speed of control
+methods like reinforcement learning and trajectory optimiza-
+tion, enable gradient-based techniques for design, or facilitate
+end-to-end machine-learning approaches for model reduction.
+This paper addresses these challenges by introducing a unified
+method for computing the derivatives of mechanical equations
+within the finite element method framework, including contact
+interactions modeled as a nonlinear complementarity problem.
+The proposed approach handles both collision and friction
+phases, accounts for their nonsmooth dynamics, and leverages
+the sparsity introduced by mesh-based models. Its effectiveness
+is demonstrated through several examples of controlling and
+calibrating soft systems.
+
+        <div class="publication-image">
+            <img src="./static/images/robots.png" alt="Robots" style="width:100%">
+        </div>
+
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Results. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-max-desktop">
+        <h2 class="title is-3">Results</h2>
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column is-four-fifths">
+              <div class="publication-image">
+                <img src="./static/images/res.png" alt="Results" style="width:100%">
+              </div>
+              <div class="content has-text-justified">
+                Top: Optimization of the Young Modulus of the beam (1 and 2) to achieve a target position for the mesh nodes. Young’s modulus is expressed in MPa, distance in mm. We can see from these figures that the gradient information relating to the mechanical parameters of the materials can be used to identify the model parameters, even if there are contacts between the beam and some obstacles. 
+                <br><br>
+                Bottom: Evolution of the distance to the target for control tasks using the Trunk robot (3) and the Finger robot (4). For the Trunk robot, the current position is compared to the final position, as the target may lie outside the robot’s workspace. Distances are measured in mm. In the case of the Trunk robot, the formulation with gradients leads to the same formulation as the one proposed in the reference articles on soft robotics control using QP approaches. In the case of the Finger robot, the derivative with respect to the actuation accounts for contact information, requiring the applied force to be greater in order to counterbalance the contact force. The results show that gradient information with respect to position and actuation can be used to control soft robots.
+
+               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Results. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Related Links. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Related Links</h2>
+
+        <div class="content has-text-justified">
+          This work relies on the <a href="https://github.com/coal-library/coal">Coal</a> library for collision detection and Simple for collision resolution.
+        </div>
+      </div>
+    </div>
+    <!--/ Related Links. -->
+
+    <!-- BibTeX. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">BibTeX</h2>
+        <div class="content has-text-left">
+          <pre><code>@article{Menager2025diffsim,
+  title={Differentiable Simulation of Soft Robots with Frictional Contacts},
+  author={Ménager, Etienne and Montaut, Louis and Le Lidec, Quentin and Carpentier, Justin},
+  journal={RoboSoft 2025 - 8th IEEE-RAS International Conference on Soft Robotics},
+  year={2025},
+  publisher={IEEE},
+}</code></pre>
+        </div>
+      </div>
+    </div>
+    <!--/ BibTeX. -->
+  </div>
+</section>
+
+</body>
+</html> 
