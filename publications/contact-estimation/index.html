@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="A Data-driven Contact Estimation Method for Wheeled-Biped Robots">
+        <meta name="keywords" content="Contact Detection, State Estimation, Wheeled-Bipeds, Robotics">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>A Data-driven Contact Estimation Method for Wheeled-Biped Robots</title>
+        <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+        <link rel="stylesheet" href="./static/css/bulma.min.css">
+        <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+        <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+        <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+        <link rel="stylesheet" href="./static/css/index.css">
+        <link rel="icon" href="./static/images/favicon.svg">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script defer src="./static/js/fontawesome.all.min.js"></script>
+        <script src="./static/js/bulma-carousel.min.js"></script>
+        <script src="./static/js/bulma-slider.min.js"></script>
+        <script src="./static/js/index.js"></script>
+    </head>
+    <body>
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a
+                    role="button"
+                    class="navbar-burger"
+                    aria-label="menu"
+                    aria-expanded="false"
+                >
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div class="navbar-menu">
+                <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+                    <a class="navbar-item" href="https://simple-robotics.github.io">
+                        <span class="icon">
+                            <i class="fas fa-home"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <section class="hero">
+            <div class="hero-body">                                    </span>
+                                </div> <!-- Missing </div> tag added here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>                                    </span>
+                                </div> <!-- Missing </div> tag added here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>                                    </span>
+                                </div> <!-- Missing </div> tag added here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+                <div class="container is-max-desktop">
+                    <div class="columns is-centered">
+                        <div class="column has-text-centered">
+                            <h1 class="title is-1 publication-title">A Data-driven Contact Estimation Method for Wheeled-Biped Robots</h1>
+                            <div class="is-size-5 publication-authors">
+                                <span class="author-block">
+                                    <a href="https://ubgk.github.io">Bora Gökbakan</a>
+                                    <sup>1</sup>,
+                                </span>
+                                <span class="author-block">
+                                    <a href="https://duembgen.github.io">Frederike Dümbgen</a>
+                                    <sup>1</sup>,
+                                </span>
+                                <span class="author-block">
+                                    <a href="https://scaron.info">Stéphane Caron</a>
+                                    <sup>1</sup>
+                                </span>
+                            </div>
+                            <div class="is-size-5 publication-authors">
+                                <span class="author-block">
+                                    <sup>1</sup> INRIA Willow
+                                </span>
+                            </div>
+                            <div class="column has-text-centered">
+                                <div class="publication-links">
+                                    <!-- PDF Link. -->
+                                    <span class="link-block">
+                                        <a href="./static/paper/gokbakan2024.pdf" class="external-link button is-normal is-rounded is-dark">
+                                            <span class="icon">
+                                                <i class="fas fa-file-pdf"></i>
+                                            </span>
+                                            <span>Paper</span>
+                                        </a>
+                                    </span>
+                                    <span class="link-block">
+                                        <a href="https://hal.science/hal-04726386" class="external-link button is-normal is-rounded is-dark">
+                                            <span class="icon">
+                                                <i class="fas fa-globe-europe"></i>
+                                            </span>
+                                            <span>HAL</span>
+                                        </a>
+                                    </span>
+                                    <span class="link-block">
+                                        <a href="https://github.com/ubgk/contact_agent" class="external-link button is-normal is-rounded is-dark">
+                                            <span class="icon">
+                                                <i class="fab fa-github"></i>
+                                            </span>
+                                            <span>Code</span>
+                                        </a>
+                                    </span>
+                                    <span class="link-block">
+                                        <a href="https://www.youtube.com/watch?v=QemngyjAQVU" class="external-link button is-normal is-rounded is-dark">
+                                            <span class="icon">
+                                                <i class="fab fa-youtube"></i>
+                                            </span>
+                                            <span>Video</span>
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section">
+            <div class="container is-max-desktop">
+                <!-- Abstract. -->
+                <div class="columns is-centered has-text-centered">
+                    <div class="column is-four-fifths">
+                        <h2 class="title is-3">Abstract</h2>
+                        <div class="content has-text-justified">
+                            Contact estimation is a key ability for limbed robots, where making and breaking contacts has a direct impact on state estimation and balance control. Existing approaches typically rely on gate-cycle priors or designated contact sensors. We design a contact estimator that is suitable for the emerging wheeled-biped robot types that do not have these features. To this end, we propose a Bayes filter in which update steps are learned from real-robot torque measurements while prediction steps rely on inertial measurements. We evaluate this approach in extensive real-robot and simulation experiments. Our method achieves better performance while being considerably more sample efficient than a comparable deep-learning baseline.
+                        </div>
+                    </div>
+                </div>
+                <!--/ Abstract. -->
+                <!-- Results. -->
+                <div class="columns is-centered has-text-centered">
+                    <div class="column is-max-desktop">
+                        <h2 class="title is-3">Results</h2>
+                        <div class="container is-max-desktop">
+                            <div class="columns is-centered">
+                                <div class="column is-four-fifths">
+                                    <div class="publication-image">
+                                        <img src="./static/images/filter.png" alt="Results" style="width:100%">
+                                    </div>
+                                    <div class="content has-text-justified">
+                                        We implement a Bayesian filter to estimate the contact probability at each timestep by fusing IMU readings and joint torque measurements. We infer transition probabilities through spectral analysis, and use the torque estimates to infer measurement probabilities.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="columns is-centered">
+                            <div class="column is-four-fifths">
+                                <div class="publication-image">
+                                    <img src="./static/images/experiments.png" alt="Results" style="width:100%">
+                                </div>
+                                <div class="content has-text-justified">
+                                    <br>
+                                    We implement and test the performance of the estimation filter to detect contacts on the wheeled-biped Upkie. Our study focuses on drops from unforeseen steps, where the robot alternates between contact and free-fall phases. We set up a test course where the robot travels over a horizontal floor, climbs a meter-long ramp with an 8° incline, drops 3 cm from the ramp onto a platform, rolls forward and
+                                    drops again from a 12-cm step, which we repeated for a total number of 10 drops or 5 laps. We see that our method achieves a 100% success rate in detecting the contact events, with better precision than the two baselines.
+                                </div>
+                                <div class="publication-image">
+                                  <img src="./static/images/transition.png" alt="Results" style="width:50%">
+                              </div>
+                              <div class="content has-text-justified">
+                                <br>
+                                We see that our method achieves a 100% success rate in detecting the contact events, with better precision than the two baselines, while maintaining competititve latencies.
+                            </div>
+                            <div class="publication-image">
+                              <img src="./static/images/latencies.png" alt="Results" style="width:50%">
+                          </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/ Results. -->
+        </div>
+    </section>
+    <section class="section">
+        <div class="container is-max-desktop">
+            <!-- Related Links. -->
+            <div class="columns is-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3">Related Links</h2>
+                    <div class="content has-text-justified">
+                        This work is implemented for the
+                        <a href="https://github.com/upkie/upkie">Upkie</a>
+                        open-source wheeled-biped.
+                    </div>
+                </div>
+            </div>
+            <!--/ Related Links. -->
+            <!-- BibTeX. -->
+            <div class="columns is-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3">BibTeX</h2>
+                    <div class="content has-text-left">
+                        <pre>
+                            <code>
+                                @unpublished{gokbakan2024,
+  title = {{A Data-driven Contact Estimation Method for Wheeled-Biped Robots}},
+  author = {G{\"o}kbakan, {\"U}. Bora and D{\"u}mbgen, Frederike and Caron, St{\'e}phane},
+  url = {https://hal.science/hal-04726386},
+  year = {2024},
+  month = Oct,
+}
+                            </code>
+                        </pre>
+                    </div>
+                </div>
+            </div>
+            <!--/ BibTeX. -->
+        </div>
+    </section>
+</body>
+</html>
