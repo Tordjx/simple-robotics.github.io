@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Parallelized proximal constrained LQR">
+  <meta name="keywords" content="Numerical optimization, Numerical optimal control, LQR, Riccati">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>aligator</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="sha384-wcIxkf4k558AjM3Yz3BBFQUbk/zgIYC2R0QpeeYb+TwlBVMrlgLqwRjRtGZiK7ww" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" integrity="sha384-hIoBPJpTUs74ddyc4bFZSM1TVlQDA60VBbJS0oA934VSz82sBx1X7kSx2ATBDIyd" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://simple-robotics.github.io">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://ieeexplore.ieee.org/document/9981586">
+            Constrained DDP: a primal-dual augmented Lagrangian approach
+          </a>
+          <a class="navbar-item" href="https://ieeexplore.ieee.org/document/9811647">
+            Implicit differential dynamic programming
+          </a>
+          <a class="navbar-item" href="https://ieeexplore.ieee.org/document/10521997/">
+            Condensed Semi-Implicit Dynamics for Trajectory Optimization in Soft Robotics
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">PROXDDP: Proximal Constrained Trajectory Optimization</h1>
+          <h2 class="subtitle is-5 is-italic">Published in IEEE Transactions on Robotics, Volume 41, 2025</h2>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://manifoldfr.github.io">Wilson Jallet</a><sup>1,2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://github.com/edantec">Antoine Bambade</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://github.com/etiennear">Etienne Arlaud</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://github.com/sarah-quinones">Sarah El-Kazdadi</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://gepettoweb.laas.fr/index.php/Members/NicolasMansard">Nicolas Mansard</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://jcarpent.github.io">Justin Carpentier</a><sup>1</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <sup>1</sup>Willow team, INRIA and Département d'Informatique de l'École normale supérieure, Paris, France<br>
+              <sup>2</sup>Gepetto team, LAAS-CNRS, 7 av. du colonel Roche, 31400 Toulouse, France
+            </span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://ieeexplore.ieee.org/abstract/document/10938351"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-book"></i>
+                  </span>
+                  <span>IEEEXplore</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://inria.hal.science/hal-04332348"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-globe-europe"></i>
+                  </span>
+                  <span>HAL</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://youtu.be/KONsHN7nBnU"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/Simple-Robotics/aligator"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Repository for aligator</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="is-centered publication-banner">
+      <img src="./static/images/quad_slalom.png" alt="slaloming quadcopter">
+    </div>
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/KONsHN7nBnU"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>Trajectory optimization has been a popular choice for motion generation and control in robotics for at least a decade. Several numerical approaches have exhibited the required speed to enable online computation of trajectories for real-time of various systems, including complex robots. Many of these said are based on the differential dynamic programming (DDP) algorithm—initially designed for unconstrained trajectory optimization problems— and its variants, which are relatively easy to implement and provide good runtime performance.</p>
+          <p>However, several problems in robot control call for using constrained formulations (e.g., torque limits, obstacle avoidance), from which several difficulties arise when trying to adapt DDP-type methods: numerical stability, computational efficiency, and constraint satisfaction. In this article, we leverage proximal methods for constrained optimization and introduce a DDP-type method for fast, constrained trajectory optimization suited for model-predictive control (MPC) applications with easy warm-starting.</p>
+          <p>Compared to earlier solvers, our approach effectively manages hard constraints without warm-start limitations and exhibits good convergence behavior. We provide a complete implementation as part of an open-source and flexible C++ trajectory optimization library called ALIGATOR. These algorithmic contributions are validated through several trajectory planning scenarios from the robotics literature and the real-time whole-body MPC of a quadruped robot.</p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Results. -->
+    <h2 class="title is-3">Results</h2>
+
+    <div class="has-text-justified">
+      <h3 class="title is-4">Benchmarks</h3>
+      <p>
+        An additional contribution of our journal paper is the inclusion of benchmarks against two other numerical solvers: IPOPT, which is a generic NLP solver often used in the OC community, and ALTRO, a tailored constrained solver.
+      </p>
+      <figure class="content has-text-centered">
+        <div class="columns">
+          <img class="column is-size-2" src="./static/images/ur5_reach_iterations.svg" alt="UR5 reach, iterations">
+          <img class="column is-size-2" src="./static/images/ur5_reach_perfprofile_time.svg" alt="UR5 reach, perf profile">
+        </div>
+        <figcaption class="has-text-weight-semibold">UR5 reaching task: iterations and performance profile</figcaption>
+      </figure>
+      <figure class="content has-text-centered">
+        <div class="columns">
+          <img class="column" src="./static/images/ur10_ballistic_iterations.svg" alt="UR10 ballistic, iterations">
+          <img class="column" src="./static/images/ur10_ballistic_perfprofile_time.svg" alt="UR10 ballistic, perf profile">
+        </div>
+        <figcaption class="has-text-weight-semibold">UR10 ballistic task: iterations and performance profile</figcaption>
+      </figure>
+      <p>
+        More details can be found in Section VIII of the paper.
+      </p>
+    </div>
+
+              
+   <!--/ Results. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Concurrent Work. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Related Links</h2>
+
+        <div class="content has-text-justified">
+          This work heavily relies on the
+          <a href="https://github.com/Simple-Robotics/aligator">aligator</a>
+          and
+          <a href="https://github.com/stack-of-tasks/pinocchio">Pinocchio</a>
+          libraries, as well as the
+          <a href="https://github.com/inria-paris-robotics-lab/quadruped-reactive-walking">quadruped-reactive-walking</a> framework for whole-body NMPC on Solo.
+        </div>
+      </div>
+    </div>
+    <!--/ Concurrent Work. -->
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+  <pre><code>@article{jalletPROXDDPProximalConstrained2025,
+  title = {PROXDDP: Proximal Constrained Trajectory Optimization},
+  shorttitle = {PROXDDP},
+  author = {Jallet, Wilson and Bambade, Antoine and Arlaud, Etienne and {El-Kazdadi}, Sarah and Mansard, Nicolas and Carpentier, Justin},
+  year = {2025},
+  journal = {IEEE Transactions on Robotics},
+  pages = {1--20},
+  issn = {1941-0468},
+  doi = {10.1109/TRO.2025.3554437},
+  urldate = {2025-04-04},
+  keywords = {Convergence,Heuristic algorithms,Legged Robots,Libraries,Linear systems,Minimization,Model-Predictive Control,Newton method,Optimization,Optimization and Optimal Control,Predictive control,Robots,Trajectory optimization}
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/paper/rssparallelclqr2024.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/Simple-Robotics" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            We thank <a
+            href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> for creating the template of this webpage.
+            You are free to borrow the <a
+              href="https://github.com/simple-robotics.github.io/publications/simple-contact-solver">source code</a>,
+            we just ask that you link back to the <a
+            href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> page in the footer.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
