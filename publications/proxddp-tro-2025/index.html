@@ -156,6 +156,9 @@
 
 <section class="section">
   <div class="container is-max-desktop">
+    <div class="is-centered publication-banner">
+      <img src="./static/images/quad_slalom.png" alt="slaloming quadcopter">
+    </div>
     <!-- Paper video. -->
     <!-- <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
@@ -184,15 +187,27 @@
     <h2 class="title is-3">Results</h2>
 
     <div class="has-text-justified">
-      <h3 class="title is-4">Solving cyclic LQ problems</h3>
-      <p>One of the side-effects of our formulation, is the ability to tackle linear-quadratic problems with cyclical constraints of the form \(G_0x_0 + G_Nx_N + g = 0\).</p>
+      <h3 class="title is-4">Benchmarks</h3>
       <p>
-        The following is a two-dimensional LQ problem over \(N = 20\) steps with no initial condition but a cyclical condition \(x_0 = x_N\), and some transient costs that steer the generated trajectory close to two points \(\bar{x}_5\) and \(\bar{x}_{15}\).
+        An additional contribution of our journal paper is the inclusion of benchmarks against two other numerical solvers: IPOPT, which is a generic NLP solver often used in the OC community, and ALTRO, a tailored constrained solver.
       </p>
-      <div class="content has-text-centered">
-        <img src="./static/images/gar-cyclic-lqr-2d.png" alt="2D cyclic LQ problem"
-        style="width: 60%;">
-      </div>
+      <figure class="content has-text-centered">
+        <div class="columns">
+          <img class="column is-size-2" src="./static/images/ur5_reach_iterations.svg" alt="UR5 reach, iterations">
+          <img class="column is-size-2" src="./static/images/ur5_reach_perfprofile_time.svg" alt="UR5 reach, perf profile">
+        </div>
+        <figcaption class="has-text-weight-semibold">UR5 reaching task: iterations and performance profile</figcaption>
+      </figure>
+      <figure class="content has-text-centered">
+        <div class="columns">
+          <img class="column" src="./static/images/ur10_ballistic_iterations.svg" alt="UR10 ballistic, iterations">
+          <img class="column" src="./static/images/ur10_ballistic_perfprofile_time.svg" alt="UR10 ballistic, perf profile">
+        </div>
+        <figcaption class="has-text-weight-semibold">UR10 ballistic task: iterations and performance profile</figcaption>
+      </figure>
+      <p>
+        More details can be found in Section VIII of the paper.
+      </p>
     </div>
 
               
