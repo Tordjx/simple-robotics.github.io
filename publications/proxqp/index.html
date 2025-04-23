@@ -2,10 +2,10 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="Differentiable QP Solver">
-  <meta name="keywords" content="Augmented Lagrangian, Quadratic Programming, Machine Learning, Optimization Layers, Differentiable Optimization">
+  <meta name="description" content="Efficient Quadratic Programming Solver for Real-Time Robotics">
+  <meta name="keywords" content="Quadratic Programming, Real-Time Robotics, Optimization, Augmented Lagrangian">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>QPLayer</title>
+  <title>PROXQP</title>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
@@ -40,7 +40,7 @@
           <i class="fas fa-home"></i>
         </span>
       </a>
-
+    </div>
   </div>
 </nav>
 
@@ -49,16 +49,28 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Leveraging Augmented-Lagrangian Techniques for Differentiating Over Infeasible Quadratic Programs in Machine Learning</h1>
+          <h1 class="title is-1 publication-title">PROXQP: an Efficient and Versatile Quadratic Programming Solver for Real-Time Robotics Applications and Beyond</h1>
+          <!-- TODO: adapt volume -->
+          <h2 class="subtitle is-5 is-italic">Published in IEEE Transactions on Robotics, Volume , 2025</h2>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://bambade.github.io">Antoine Bambade</a>,</span>
+              <a href="https://bambade.github.io">Antoine Bambade</a>,
+            </span>
             <span class="author-block">
-              <a href="https://fabinsch.github.io/">Fabian Schramm</a>,</span>
+              <a href="https://fabinsch.github.io/">Fabian Schramm</a>,
+            </span>
             <span class="author-block">
-              <a href="https://adrientaylor.github.io">Adrien Taylor</a>,</span>
+              Sarah El Kazdadi,
+            </span>
             <span class="author-block">
-              <a href="https://jcarpent.github.io">Justin Carpentier</a></span>
+              <a href="https://scaron.info/">Stéphane Caron</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://adrientaylor.github.io">Adrien Taylor</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://jcarpent.github.io">Justin Carpentier</a>
+            </span>
           </div>
 
           <div class="is-size-5 publication-authors">
@@ -69,7 +81,7 @@
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="./static/paper/qplayer.pdf"
+                <a href="./static/paper/proxqp.pdf"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -78,7 +90,7 @@
                 </a>
               </span>
               <span class="link-block">
-                <a href="https://hal.science/hal-04133055"
+                <a href="https://hal.science/hal-04198663"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                     <i class="fas fa-globe-europe"></i>
@@ -112,12 +124,11 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
-          Optimization layers within neural network architectures have become increasingly popular for their ability to solve a wide range of machine learning tasks and to model domain-specific knowledge. However, designing optimization layers requires careful consideration as the underlying optimization problems might be infeasible during training. Motivated by applications in learning, control and robotics, this work focuses on convex quadratic programming (QP) layers. The specific structure of this type of optimization layer can be efficiently exploited for faster computations while still allowing rich modeling capabilities. We leverage primal-dual augmented Lagrangian techniques for computing derivatives of both feasible and infeasible QP solutions. More precisely, we propose a unified approach that tackles the differentiability of the closest feasible QP solutions in a classical ℓ2 sense. We then harness this approach to enrich the expressive capabilities of existing QP layers. More precisely, we show how differentiating through infeasible QPs during training enables to drive towards feasibility at test time a new range of QP layers. These layers notably demonstrate superior predictive performance in some conventional learning tasks. Additionally, we present alternative formulations that enhance numerical robustness, speed, and accuracy for training such layers. Along with these contributions, we provide an open-source C++ software package called QPLayer for differentiating feasible and infeasible convex QPs and which can be interfaced with modern learning frameworks.
+          Convex Quadratic programming (QP) has become a core component in the modern engineering toolkit, particularly in robotics, where QP problems are legions, ranging from real-time whole-body controllers to planning and estimation algorithms. Many of those QPs need to be solved at high frequency. Meeting timing requirements requires taking advantage of as many structural properties as possible for the problem at hand. For instance, it is generally crucial to resort to warm-starting to exploit the resemblance of consecutive control iterations. While a large range of off-the-shelf QP solvers is available, only a few are suited to exploit problem structure and warm-starting capacities adequately. In this work, we propose the ProxQP algorithm, a new and efficient QP solver that exploits QP structures by leveraging primal-dual augmented Lagrangian techniques. For convex QPs, ProxQP features a global convergence guarantee to the closest feasible QP, an essential property for safe closed-loop control. We illustrate its practical performance on various standard robotic and control experiments, including a real-world closed-loop model predictive control application. While originally tailored for robotics applications, we show that ProxQP also performs at the level of state of the art on generic QP problems, making ProxQP suitable for use as an off-the-shelf solver for regular applications beyond robotics.
 
         <div class="publication-image">
-            <img src="./static/images/qplayer-model.png" alt="QPLayer" style="width:100%">
+            <img src="./static/images/upkie-mpc.png" alt="Robotics Example" style="width:100%">
         </div>
-
         </div>
       </div>
     </div>
@@ -129,76 +140,59 @@
         <h2 class="title is-3">Results</h2>
         <div class="content">
           <p>
-            Our backward mode differentiation of convex QP layers has been implemented in C++. We refer to
-            it as QPLayer in what follows. Our code leverages the primal-dual augmented Lagrangian solver
-            ProxQP (Bambade et al., 2022), also written in C++ as its internal QP solver. This section illustrates
-            through a classic Sudoku learning task that QPLayer allows relaxing primal feasibility constraints,
-            thereby enabling the training of simplified layers.
+            Our ProxQP solver has been implemented in C++ and is designed to handle a wide range of quadratic programming problems efficiently. This section illustrates the performance of ProxQP through various different benchmarks, demonstrating its ability to solve QP problems efficiently.
           </p>
         </div>
         <div class="columns is-centered">
           <div class="column">
             <div class="content">
-              <img src="./static/images/dl-optlayer.png" alt="Sudoku Plot" style="width:100%">
-              <p>Figure 1: Deep learning paradigm for Sudoku solving task.</p>
+              <img src="./static/images/benchmark1.png" alt="Benchmarks 1" style="width:100%">
             </div>
           </div>
         </div>
         <div class="columns is-centered">
           <div class="column">
             <div class="content">
-              <img src="./static/images/loss-plot.png" alt="Loss Plot" style="width:100%">
-              <p>Figure 2: Test MSE loss of QPLayer, OptNet, QPLayer-learn A, and OptNet-learn A specialized for learning A. It includes Sudoku Ax = 1 violation.</p>
-            </div>
-          </div>
-        </div>
-        <div class="columns is-centered">
-          <div class="column">
-            <div class="content">
-              <img src="./static/images/err-plot.png" alt="Error Plot" style="width:100%">
-              <p>Figure 3: Test prediction errors over 1000 puzzles of OptNet, QPLayer, QPLayer-learn A and OptNet-learn A specialized for learning A.</p>
+              <img src="./static/images/benchmark2.png" alt="Benchmark 2" style="width:100%">
             </div>
           </div>
         </div>
       </div>
     </div>
     <!--/ Results. -->
+  </div>
 </section>
-
 
 <section class="section">
   <div class="container is-max-desktop">
-
     <!-- Concurrent Work. -->
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Related Links</h2>
-
         <div class="content has-text-justified">
-          This work relies on <a
-          href="https://github.com/simple-robotics/proxsuite">Proxsuite</a> and has been integrated as PyTorch Module with Proxsuite.
+          This work is implemented in <a href="https://github.com/simple-robotics/proxsuite">Proxsuite</a>.
         </div>
         <div class="publication-image">
-            <p>Here is a code example showing how to easily use QPLayer in PyTorch:</p>
-            <img src="./static/images/code-example.png" alt="QPLayer" style="width:100%">
+            <p>Here is a code example showing how to easily use ProxQP in Python:</p>
+            <img src="./static/images/code-example.png" alt="ProxQP Code Example" style="width:100%">
         </div>
-
       </div>
     </div>
     <!--/ Concurrent Work. -->
-
   </div>
 </section>
-
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@article{bambade2024augmented,
-        author    = {Bambade, Antoine and Schramm, Fabian and Taylor, Adrien and Carpentier, Justin},
-        title     = {Leveraging Augmented-Lagrangian Techniques for Differentiating Over Infeasible Quadratic Programs in Machine Learning},
-        journal   = {Twelfth International Conference on Learning Representations (ICLR)},
-        year      = {2024},
+    <!-- TODO: adapt volume and url -->
+
+    <pre><code>@article{bambade2023proxqp,
+        author    = {Bambade, Antoine and Schramm, Fabian and El Kazdadi, Sarah and Caron, Stéphane and Taylor, Adrien and Carpentier, Justin},
+        title     = {PROXQP: an Efficient and Versatile Quadratic Programming Solver for Real-Time Robotics Applications and Beyond},
+        journal = {IEEE Transactions on Robotics},
+        year      = {2025},
+        url       = {https://inria.hal.science/hal-04198663}
 }</code></pre>
   </div>
 </section>
@@ -206,7 +200,7 @@
 <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
-      <a class="icon-link" href="./static/paper/qplayer.pdf">
+      <a class="icon-link" href="./static/paper/proxqp.pdf">
         <i class="fas fa-file-pdf"></i>
       </a>
       <a class="icon-link" href="https://github.com/simple-robotics/proxsuite" class="external-link" disabled>
