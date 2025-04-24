@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Efficient Quadratic Programming Solver for Real-Time Robotics">
+  <meta name="keywords" content="Quadratic Programming, Real-Time Robotics, Optimization, Augmented Lagrangian">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PROXQP</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://simple-robotics.github.io">
+        <span class="icon">
+          <i class="fas fa-home"></i>
+        </span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Collision avoidance from monocular vision trained with novel view synthesis</h1>
+          <!-- TODO: adapt volume -->
+          <h2 class="subtitle is-5 is-italic">Working paper</h2>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="">Valentin Tordjman--Levavasseur</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://scaron.info/">Stéphane Caron</a>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Inria - Département d’Informatique de l'École normale supérieure, PSL Research University, France.</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="./static/paper/paper.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://hal.science/hal-05005146"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-globe-europe"></i>
+                  </span>
+                  <span>HAL</span>
+                </a>
+              </span>
+
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/Tordjx/Collision-avoidance-2DGS"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          Collision avoidance can be checked in explicit
+          environment models such as elevation maps or occupancy grids,
+          yet integrating such models with a locomotion policy requires
+          accurate state estimation. In this work, we consider the question
+          of collision avoidance from an implicit environment model. We
+          use monocular RGB images as inputs and train a collision-
+          avoidance policy from photorealistic images generated by 2D
+          Gaussian splatting. We evaluate the resulting pipeline in real-
+          world experiments under velocity commands that bring the
+          robot on an intercept course with obstacles. Our results suggest
+          that RGB images can be enough to make collision-avoidance
+          decisions, both in the room where training data was collected
+          and in out-of-distribution environments.
+
+        <div class="publication-image">
+            <img src="./static/images/vignette.png" alt="Robotics Example" style="width:100%">
+        </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+    <!-- Results. -->
+
+    ##########################################################################################
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-max-desktop">
+        <h2 class="title is-3">Results</h2>
+        <div class="content">
+          <p>
+            Our ProxQP solver has been implemented in C++ and is designed to handle a wide range of quadratic programming problems efficiently. This section illustrates the performance of ProxQP through various different benchmarks, demonstrating its ability to solve QP problems efficiently.
+          </p>
+        </div>
+        <div class="columns is-centered">
+          <div class="column">
+            <div class="content">
+              <img src="./static/images/benchmark1.png" alt="Benchmarks 1" style="width:100%">
+            </div>
+          </div>
+        </div>
+        <div class="columns is-centered">
+          <div class="column">
+            <div class="content">
+              <img src="./static/images/benchmark2.png" alt="Benchmark 2" style="width:100%">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Results. -->
+  </div>
+</section>
+
+##########################################################################################
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <!-- TODO: adapt volume and url -->
+
+    <pre><code>@unpublished{tordjmanlevavasseur:hal-05005146,
+      TITLE = {{Collision avoidance from monocular vision trained with novel view synthesis}},
+      AUTHOR = {Tordjman--Levavasseur, Valentin and Caron, St{\'e}phane},
+      URL = {https://hal.science/hal-05005146},
+      NOTE = {working paper or preprint},
+      YEAR = {2025},
+      MONTH = Mar,
+      KEYWORDS = {Collision avoidance ; Reinforcement learning ; Vision-Based Navigation},
+      PDF = {https://hal.science/hal-05005146v1/file/pdfpaperoverleaf-1.pdf},
+      HAL_ID = {hal-05005146},
+      HAL_VERSION = {v1},
+    }</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="./static/paper/paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/Tordjx/Collision-avoidance-2DGS" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            We thank <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> for creating the template of this webpage. You are free to borrow the <a href="https://github.com/simple-robotics.github.io/publications/simple-gradients">source code</a>, we just ask that you link back to the <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> page in the footer.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
